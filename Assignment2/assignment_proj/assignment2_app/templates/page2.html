@@ -1,0 +1,43 @@
+<html>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+    <head>
+            <title>List of project</title>
+
+    </head>
+    <body>
+        <h1>Thesis Available</h1>
+
+
+        <table style="width: 100%">
+            <tr>
+              <th>Title</th>
+              <th>Small Description</th>
+              <th>Supervisor Name</th>
+            </tr>
+            <tr>
+              <td>{{proj_1.title}}</td>
+              <td>{{proj_1.desc}}</td>
+              <td>{{proj_1.sup_name}}</td>
+            </tr>
+            <tr>
+              <td>{{proj_2.title}}</td>
+              <td>{{proj_2.desc}}</td>
+              <td>{{proj_2.sup_name}}</td>
+            </tr>
+          </table>
+
+
+
+        <ul>
+
+            {% for project in proj_list %}
+
+            <li> {{ project }} </li> {% endfor %}
+
+        </ul>
+    </body>
+</html>
