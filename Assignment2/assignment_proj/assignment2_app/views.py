@@ -3,17 +3,6 @@ from .Data import *
 # Create your views here.
 
 
-
-
-
-
-
-
-
-def hello(request):
- return render(request, 'hello.html')
-
-
 def page2(request):
 
     

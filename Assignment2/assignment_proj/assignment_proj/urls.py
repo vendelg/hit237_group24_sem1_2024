@@ -20,6 +20,5 @@ from assignment2_app import views
 
 urlpatterns = [
     re_path(r'admin/', admin.site.urls),
-    re_path(r'hello/?$', views.hello),
     re_path(r'page2/?$', views.page2),
 ]
