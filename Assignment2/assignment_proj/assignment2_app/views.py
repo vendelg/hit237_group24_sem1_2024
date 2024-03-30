@@ -18,4 +18,4 @@ def page2(request):
     }                          
                                                                                
                                 
-    return render(request, 'assignemt2_app/page2.html', project_data)
+    return render(request, 'assignment2_app/page2.html', project_data)
