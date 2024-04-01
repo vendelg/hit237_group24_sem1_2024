@@ -1,0 +1,38 @@
+{% extends "assignment2_app/base.html" %}
+
+{% block page_title %}
+About Us
+{% endblock %}
+
+{% block page_heading %}
+<h1><str>Group 24</str></h1>
+{% endblock %}
+
+{% block main_body %}
+  {% for member in list %}
+    <p>
+      <table border="2" width="100%">
+        <col style="width:20%">
+        <col style="width:80%">
+        <tbody>
+          <tr>
+            <td><str>Role</str></td>
+            <td>{{ member.role }}</td>
+          </tr>
+          <tr>
+            <td><str>Name</str></td>
+            <td>{{ member.name }}</td>
+          </tr>
+          <tr>
+            <td><str>Student ID</str></td>
+            <td>{{ member.student_id }}</td>
+          </tr>
+          <tr>
+            <td><str>Course</str></td>
+            <td>{{ member.course }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  {% endfor %}
+{% endblock %}
