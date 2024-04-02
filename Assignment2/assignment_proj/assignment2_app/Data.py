@@ -5,8 +5,6 @@ class Projects:
         self.desc = desc
         self.sup_name = sup_name
 
-
-
 proj_1 = Projects('Machine learning approaches for Cyber Security', 'As we use internet more, the data produced by us is enormous. But are these data being secure?.', 'Bharanidharan Shanmugam')
 proj_2 = Projects('Informetrics applications in multidisciplinary domain', 'Informetrics studies are concerned with the quantitative aspects of information. The applications of advanced machine learning, information retrieval, network science and bibliometric techniques on various information artefact have contributed fresh insights into the evolutionary nature of research fields.', 'Yakub Sebastian ')
 proj_3 = Projects('Development of a Virtual Reality System to Test Binaural Hearing', 'A virtual reality system could be used to objectively test the binaural hearing ability of humans (the ability to hear stereo and locate the direction and distance of sound).', 'Sami Azam')

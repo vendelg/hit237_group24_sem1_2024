@@ -1,75 +1,64 @@
-<html>
-    <style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-}
+{% extends "assignment2_app/base.html" %}
 
-        </style>
-    <head>
-            <title>List of project</title>
+{% block page_title %}
+Theses
+{% endblock %}
 
-    </head>
-    <body>
-        <h1>Thesis Available</h1>
+{% block page_heading %}
+<h1><str>Available Projects</str></h1>
+{% endblock %}
 
+{% block main_body %}
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+  th, td {
+    padding: 15px;
+    }
+  </style>
 
-        <table style="width: 100%" >
-
-            <tr>
-              <th>Title</th>
-              <th>Small Description</th>
-              <th>Supervisor Name</th>
-            </tr>
-            <tr>
-              <td>{{proj_1.title}}</td>
-              <td>{{proj_1.desc}}</td>
-              <td>{{proj_1.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_2.title}}</td>
-              <td>{{proj_2.desc}}</td>
-              <td>{{proj_2.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_3.title}}</td>
-              <td>{{proj_3.desc}}</td>
-              <td>{{proj_3.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_4.title}}</td>
-              <td>{{proj_4.desc}}</td>
-              <td>{{proj_4.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_5.title}}</td>
-              <td>{{proj_5.desc}}</td>
-              <td>{{proj_5.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_6.title}}</td>
-              <td>{{proj_6.desc}}</td>
-              <td>{{proj_6.sup_name}}</td>
-            </tr>
-            <tr>
-              <td>{{proj_7.title}}</td>
-              <td>{{proj_7.desc}}</td>
-              <td>{{proj_7.sup_name}}</td>
-            </tr>
-
-          </table>
-
-
-
-        <ul>
-
-            {% for project in proj_list %}
-
-            <li> {{ project }} </li> {% endfor %}
-
-        </ul>
-    </body>
-</html>
+  <table style="width: 100%" >
+    <tr>
+      <th>Title</th>
+      <th>Small Description</th>
+      <th>Supervisor Name</th>
+    </tr>
+    <tr>
+      <td>{{proj_1.title}}</td>
+      <td>{{proj_1.desc}}</td>
+      <td>{{proj_1.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_2.title}}</td>
+      <td>{{proj_2.desc}}</td>
+      <td>{{proj_2.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_3.title}}</td>
+      <td>{{proj_3.desc}}</td>
+      <td>{{proj_3.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_4.title}}</td>
+      <td>{{proj_4.desc}}</td>
+      <td>{{proj_4.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_5.title}}</td>
+      <td>{{proj_5.desc}}</td>
+      <td>{{proj_5.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_6.title}}</td>
+      <td>{{proj_6.desc}}</td>
+      <td>{{proj_6.sup_name}}</td>
+    </tr>
+    <tr>
+      <td>{{proj_7.title}}</td>
+      <td>{{proj_7.desc}}</td>
+      <td>{{proj_7.sup_name}}</td>
+    </tr>
+  </table>
+{% endblock %}
