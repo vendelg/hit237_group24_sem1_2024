@@ -15,10 +15,18 @@ Theses
     table, th, td {
       border: 1px solid black;
       border-collapse: collapse;
+      border-spacing: 0px;
+      table-layout: fixed;
+      margin-left:auto; 
+      margin-right:auto;
       }
     th, td {
       padding: 15px;
+
       }
+    
+    
+
     </style>
 
 
@@ -39,7 +47,7 @@ Theses
       <col style="width:80%">
     
       <tr>
-        <td>{{proj.title}}</td>
+        <td > <a href="page3/{{ proj.id }} " > {{proj.title}}  </a></td>
         <td>{{proj.desc}}</td>
         <td>{{proj.sup_name}}</td>
       </tr>

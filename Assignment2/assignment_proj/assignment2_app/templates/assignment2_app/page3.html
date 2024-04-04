@@ -1,0 +1,18 @@
+{%extends "assignment2_app/base.html"%}
+{% block page_heading %}<h1> {{ thesis.title}} </h1>{% endblock %}
+{%block main_body %}
+
+{% if thesis %} 
+
+<P>
+
+
+{{thesis.text}}
+    
+
+</P>
+
+{%endif%}
+
+
+{% endblock %}

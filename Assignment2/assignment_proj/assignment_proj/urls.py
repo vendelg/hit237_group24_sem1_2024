@@ -22,4 +22,5 @@ urlpatterns = [
     re_path(r'admin/', admin.site.urls),
     re_path(r'page2/?$', views.page2, name='page2'),
     re_path(r'about/?$', views.about, name='about'),
+    path('page3/<int:thesisid>/', views.show_thesis_topic, name= 'page3/<int:thesisid>/')
 ]
