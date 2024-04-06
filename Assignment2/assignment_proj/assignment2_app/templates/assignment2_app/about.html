@@ -1,5 +1,6 @@
 {% extends "assignment2_app/base.html" %}
 
+
 {% block page_title %}
 About Us
 {% endblock %}
@@ -8,15 +9,27 @@ About Us
 <h1><str>Group 24</str></h1>
 {% endblock %}
 
+
+
 {% block main_body %}
+
+{% load static %}
+
+<td rowspan = "5"><img src= " {% static 'AimanPlH.png' %} "  alt = "image here" /></td>
+
+
   {% for member in list %}
+
+ 
     <p>
       <table border="2" width="100%">
         <col style="width:20%">
         <col style="width:80%">
+
+  
         <tbody>
           <tr>
-            <td rowspan = "5"><img src="{{ member.image }}"></td>
+            <td rowspan = "5"><img src= "AimanPlH.png"  alt = "image here" /></td>
             <td>{{ member.role }}</td>
           </tr>
           <tr>
@@ -40,3 +53,4 @@ About Us
     </p>
   {% endfor %}
 {% endblock %}
+
