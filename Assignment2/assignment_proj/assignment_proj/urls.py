@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from assignment2_app import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     re_path(r'admin/', admin.site.urls),
@@ -24,3 +25,4 @@ urlpatterns = [
     re_path(r'about/?$', views.about, name='about'),
     path('page3/<int:thesisid>/', views.show_thesis_topic)
 ]
+

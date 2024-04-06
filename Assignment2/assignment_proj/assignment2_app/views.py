@@ -15,27 +15,27 @@ def create_members():
    
    list = []
    
-   list.append(Member( 'VendalPlH.png' ,'Leader',
+   list.append(Member( "static/VendalPlH.png" ,'Leader',
                       'Vendal Gomes',
                       's321266',
                       'Bachelor of IT'))
    
-   list.append(Member( 'LouisPlH.png','Scribe',
+   list.append(Member( 'static/LouisPlH.png','Scribe',
                       'Louis Bajarias',
                       's366704',
                       'Bachelor of IT'))
    
-   list.append(Member('AimanPlH.png','Presenter',
+   list.append(Member('static/AimanPlH.png','Presenter',
                       'Syarif Aiman Lubis',
                       's362319',
                       'Bachelor of IT'))
    
-   list.append(Member( 'JamesPlH.png','Editor',
+   list.append(Member( 'static/JamesPlH.png','Editor',
                       'James Paul',
                       's343288',
                       'Bachelor of Computer Science'))
    
-   list.append(Member( 'MiguelPlH.png','Timekeeper',
+   list.append(Member( 'static/MiguelPlH.png','Timekeeper',
                       'Miguel Lalim',
                       's323016',
                       'Bachelor of Computer Science'))
