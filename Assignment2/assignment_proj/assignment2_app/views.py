@@ -15,27 +15,27 @@ def create_members():
    
    list = []
    
-   list.append(Member('Leader',
+   list.append(Member( 'assignment2_app/images/VendalPlH.png' ,'Leader',
                       'Vendal Gomes',
                       's321266',
                       'Bachelor of IT'))
    
-   list.append(Member('Scribe',
+   list.append(Member( 'assignment2_app/images/LouisPlH.png','Scribe',
                       'Louis Bajarias',
                       's366704',
                       'Bachelor of IT'))
    
-   list.append(Member('Presenter',
+   list.append(Member('assignment2_app/images/AimanPlH.png','Presenter',
                       'Syarif Aiman Lubis',
                       's362319',
                       'Bachelor of IT'))
    
-   list.append(Member('Editor',
+   list.append(Member( 'assignment2_app/images/JamesPlH.png','Editor',
                       'James Paul',
                       's343288',
                       'Bachelor of Computer Science'))
    
-   list.append(Member('Timekeeper',
+   list.append(Member( 'assignment2_app/images/MiguelPlH.png','Timekeeper',
                       'Miguel Lalim',
                       's323016',
                       'Bachelor of Computer Science'))
@@ -85,8 +85,9 @@ def thesis_topics():
 
 
 class Member:
-   def __init__(self, role, name, student_id, course):
+   def __init__(self, image, role, name, student_id, course):
       
+      self.image = image
       self.role = role
       self.name = name
       self.student_id = student_id
