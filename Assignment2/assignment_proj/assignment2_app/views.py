@@ -30,7 +30,7 @@ def create_members():
                       's362319',
                       'Bachelor of IT'))
    
-   list.append(Member('static/JamesPlH.png','Editor',
+   list.append(Member('static/James.png','Editor',
                       'James Paul',
                       's343288',
                       'Bachelor of Computer Science'))
