@@ -26,3 +26,4 @@ urlpatterns = [
     path('page3/<int:thesisid>/', views.show_thesis_topic)
 ]
 
+urlpatterns += staticfiles_urlpatterns()
