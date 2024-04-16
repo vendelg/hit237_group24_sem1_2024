@@ -77,7 +77,15 @@ def thesis_topics():
 
    return the_topics
 
+## making the function for the home page messages - VG
+def homemessages():
+   messages = []
 
+   messages.append(homepage('HIT237 Group 24 respectfully acknowledges the traditional custodians of the land on which we live and work in the Northern Territory, Australia. We pay our respects to the Aboriginal peoples, the traditional owners and custodians of this land, past, present, and emerging.', ))
+   messages.append(homepage('This website was created for Charles Darwin University masters degree level Information Technology students who are looking to complete their theses. The website allows the students to be able to view all available thesis subjects and the teacher who will be the one to guide/support them throughout the length of their thesis. The website created will also allow users to see which lecturers are available to assist for different thesis subjects.', ))
+   messages.append(homepage('The available theses can be found in the Thesis tab. The About Us page will show details about HIT237 Group 24.  This is standard across many different higher education institutes, with the lecturer contacts being provided to the student as well. This will allow them to contact the corresponding lecturer so they will be able to apply for a thesis that they would be interested in completion for their master’s in information technology degree.', ))
+
+   return messages       
 #########################################################################
 
 
@@ -100,6 +108,11 @@ class Thesis:
       self.title = title
       self.desc = desc
       self.sup_name = sup_name
+
+## making the homepage class below - VG
+class homepage:
+   def __init__(self, messages):
+      self.messages = messages
       
 ########################################################################
 
@@ -144,6 +157,15 @@ def show_thesis_topic(request, thesisid):
    return render(request, 'assignment2_app/page3.html', context)
 
 
+## below code made for the homepage html - VG
+def home(request):
+   
+
+   home_context = {
+      'homemessages' : homemessages,
+   }
+
+   return render(request, 'assignment2_app/homepage.html', home_context)
 
 
 

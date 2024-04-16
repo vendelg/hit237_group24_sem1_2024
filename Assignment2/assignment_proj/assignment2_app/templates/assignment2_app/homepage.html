@@ -1,0 +1,20 @@
+{% extends "assignment2_app/base.html" %}
+
+{% block page_title %}
+Home
+{% endblock %}
+
+{% block page_heading %}
+<h1><str>CDU Information Technology Masters Thesis Website</str></h1>
+{% endblock %}
+
+
+{% block main_body %}
+
+
+{% for text in homemessages %}
+<p>{{text.messages}}</p>
+{% endfor %}
+
+
+{% endblock %}
