@@ -1,57 +1,36 @@
 {% extends "assignment2_app/base.html" %}
 
-{% block page_title %}
-Theses
-{% endblock %}
+
 
 {% block page_heading %}
+
+
+{% load static %}
+
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}">
+
+
 <h1><str>Available Projects</str></h1>
+
+
+
+
+
 {% endblock %}
 
 {% block main_body %}
-  
 
-    <style>
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-      border-spacing: 0px;
-      table-layout: fixed;
-      margin-left:auto; 
-      margin-right:auto;
-      }
-    th, td {
-      padding: 15px;
-
-      }
-    
     
 
-    </style>
 
-
-<table border="2" width="100%">
-  <col style="width:10%">
-  <col style="width:80%">
-
-  <tr>
-    <th>Title</th>
-    <th>Small Description</th>
-    <th>Supervisor Name</th>
-  </tr>
 
     {% for proj in proj_list %}
 
-    <table border="2" width="100%">
-      <col style="width:10%">
-      <col style="width:80%">
-    
-      <tr>
-        <td > <a href="page3/{{ proj.id }} " > {{proj.title}}  </a></td>
-        <td>{{proj.desc}}</td>
-        <td>{{proj.sup_name}}</td>
-      </tr>
-    </table>
+
+<h2>  <div> <a href="page3/{{ proj.id }} " > {{proj.title}}  </a> </h2></div>
+<div class = "sup_name"> Supervisor: <span>{{proj.sup_name}} </div>
+<div class = "desc"> {{proj.desc}} </div>
+ 
   {% endfor %}
   
 

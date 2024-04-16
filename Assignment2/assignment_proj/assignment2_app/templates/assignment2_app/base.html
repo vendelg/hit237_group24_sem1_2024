@@ -1,5 +1,9 @@
 <html>
 
+{% load static %}
+
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}"/>
+
   <head>
     <title>
       {% block page_title %}CDU Theses{% endblock %}
@@ -17,7 +21,7 @@
       </div>
       <hr>
       {% block main_body %}{% endblock %}
-      <footer>
+      <footer class = "footer">
         <p>2024 Group 24 -- For assignment purposes only!</p>
       </footer>
     </div>
