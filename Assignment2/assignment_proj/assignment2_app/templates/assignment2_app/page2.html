@@ -12,26 +12,18 @@
 
 <h1><str>Available Projects</str></h1>
 
-
-
-
-
 {% endblock %}
 
 {% block main_body %}
 
-    
 
+{% for proj in proj_list %}
 
+  <h2>  <div> <a href="page3/{{ proj.id }} " > {{proj.title}}  </a> </h2></div>
+  <div class = "supervisor_name"> Supervisor: <span>{{proj.sup_name}} </div>
+  <div class = "desc"> {{proj.desc}} </div>
 
-    {% for proj in proj_list %}
-
-
-<h2>  <div> <a href="page3/{{ proj.id }} " > {{proj.title}}  </a> </h2></div>
-<div class = "supervisor_name"> Supervisor: <span>{{proj.sup_name}} </div>
-<div class = "desc"> {{proj.desc}} </div>
- 
-  {% endfor %}
+{% endfor %}
   
 
 {% endblock %}
