@@ -24,7 +24,7 @@ urlpatterns = [
     re_path(r'page2/?$', views.page2, name='page2'),
     re_path(r'about/?$', views.about, name='about'),
     path('page3/<int:thesisid>/', views.show_thesis_topic),
-    re_path(r'/?$', views.home, name = 'homepage'), ## made for the homepage appearing in the localhost:8000 - VG
+    re_path(r'$', views.home, name = 'homepage'), ## made for the homepage appearing in the localhost:8000 - VG
 ]
 
 urlpatterns += staticfiles_urlpatterns()

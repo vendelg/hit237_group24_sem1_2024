@@ -1,7 +1,6 @@
 from django.shortcuts import render
-
+from assignment2_app.data import *
 # Create your views here.
-
 
 
 
@@ -77,7 +76,6 @@ def thesis_topics():
 
    return the_topics
 
-## making the function for the home page messages - VG
 def homemessages():
    messages = []
 
@@ -86,35 +84,9 @@ def homemessages():
    messages.append(homepage('The available theses can be found in the Thesis tab. The About Us page will show details about HIT237 Group 24.  This is standard across many different higher education institutes, with the lecturer contacts being provided to the student as well. This will allow them to contact the corresponding lecturer so they will be able to apply for a thesis that they would be interested in completion for their master’s in information technology degree.', ))
 
    return messages       
-#########################################################################
 
 
-# These are the classes:
 
-
-class Member:
-   def __init__(self, image, role, name, student_id, course):
-      
-      self.image = image
-      self.role = role
-      self.name = name
-      self.student_id = student_id
-      self.course = course
-
-class Thesis:
-   def __init__(self, id, text, title, desc, sup_name):
-      self.id = id
-      self.text = text
-      self.title = title
-      self.desc = desc
-      self.sup_name = sup_name
-
-## making the homepage class below - VG
-class homepage:
-   def __init__(self, messages):
-      self.messages = messages
-      
-########################################################################
 
 # Requests:
 
