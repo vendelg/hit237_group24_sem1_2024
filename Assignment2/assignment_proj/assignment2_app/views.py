@@ -20,12 +20,12 @@ def create_members():
                       's321266',
                       'Bachelor of IT'))
    
-   list.append(Member('static/images/LouisPlH.png','Scribe',
+   list.append(Member('static/images/Louis.png','Scribe',
                       'Louis Bajarias',
                       's366704',
                       'Bachelor of IT'))
    
-   list.append(Member('static/images/AimanPlH.png','Presenter',
+   list.append(Member('static/images/Aiman.png','Presenter',
                       'Syarif Aiman Lubis',
                       's362319',
                       'Bachelor of IT'))
@@ -35,7 +35,7 @@ def create_members():
                       's343288',
                       'Bachelor of Computer Science'))
    
-   list.append(Member('static/images/MiguelPlH.png','Timekeeper',
+   list.append(Member('static/images/Miguel.png','Timekeeper',
                       'Miguel Lalim',
                       's323016',
                       'Bachelor of Computer Science'))
