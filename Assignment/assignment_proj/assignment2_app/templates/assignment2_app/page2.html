@@ -1,29 +1,15 @@
 {% extends "assignment2_app/base.html" %}
 
-
-
 {% block page_heading %}
-
-
 {% load static %}
-
 <link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}">
-
-
-<h1 class = "page_headings"><str>Available Projects</str></h1>
-
+<h1 class = "page_headings"><str>Available Theses</str></h1>
 {% endblock %}
 
 {% block main_body %}
-
-
-{% for proj in proj_list %}
-
-  <h2>  <div> <a href="page3/{{ proj.id }} " > {{proj.title}}  </a> </h2></div>
-  <div class = "supervisor_name"> Supervisor: <span>{{proj.sup_name}} </div>
-  <div class = "desc"> {{proj.desc}} </div>
-
+{% for thesis in theses %}
+  <h2><a href="page3/{{ thesis.id }} ">{{ thesis.title }}</a></h2>
+  <div class= "supervisor_name"> Supervisor: {{ thesis.sup_name }} </div>
+  <div class= "desc"> {{ thesis.desc }} </div>
 {% endfor %}
-  
-
 {% endblock %}

@@ -1,0 +1,31 @@
+<!-- Step 2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Thesis</title>
+</head>
+<body>
+  {% if not thesis %}
+  <h1>Invalid Thesis ID</h1>
+  {% else %}
+  <table>
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{ thesis.id }}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ thesis.desc }}</td>
+      </tr>
+      <tr>
+        <th>Supervisor</th>
+        <td>{{ thesis.sup_name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+</body>
+</html>
