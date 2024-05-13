@@ -124,11 +124,11 @@ def save_new_thesis(form):   # Step 3
 def edit_thesis(request, key=1):   # Step 3
     
    # Fetch exixting publisher record from database
-   pub = TestThesis.objects.get(id=int(key))
+   thesis = TestThesis.objects.get(id=int(key))
    
    if request.method == 'POST':
       
-      form = ThesisForm(request.POST, instance=pub)
+      form = ThesisForm(request.POST, instance=thesis)
       if form.is_valid() != True:
          page_data = {
                'thesisForm': form
@@ -139,12 +139,32 @@ def edit_thesis(request, key=1):   # Step 3
    
    else:         # GET request from entering URL
       
-      form = ThesisForm(instance=pub)
+      form = ThesisForm(instance=thesis)
       page_data = {
          'thesisForm': form
       }
    
    return render(request, app_name + 'edit_thesis.html', page_data)
+
+def delete_publisher(request,key):
+    
+    # Fetch exixting publisher record from database
+    thesis = TestThesis.objects.get(id=int(key))
+    
+    if request.method == 'POST':
+        
+        thesis.delete()
+        
+        return HttpResponseRedirect(reverse('homepage'))
+    
+    else:         # GET request from entering URL
+        
+        form = ThesisForm(instance=thesis)
+        page_data = {
+            'thesisForm': form
+        }
+    
+    return render(request, app_name + 'edit_thesis.html', page_data)
 
 def page2(request):
 
