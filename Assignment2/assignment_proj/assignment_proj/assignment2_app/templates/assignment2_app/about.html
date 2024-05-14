@@ -1,0 +1,58 @@
+{% extends "assignment2_app/base.html" %}
+
+
+
+
+
+<html>      
+{% block page_title %}
+About Us
+{% endblock %}
+
+{% block page_heading %}
+<h1 class = "page_headings" ><str>Group 24</str></h1>
+{% endblock %}
+
+
+
+{% block main_body %}
+
+{% load static %}
+
+
+
+  {% for member in list %}
+
+  
+    <p>
+      <table border="2" width="40%">
+        <col style="width:10%">
+        <col style="width:30%">
+        <col style="width:70%">
+        <tbody>
+          <tr>
+            <td rowspan="5"><img src="{{ member.image }}" alt="image here" width="150" height="150"></td>
+          </tr>
+          <tr>
+            <td><str>Role</str></td>
+            <td>{{ member.role }}</td>
+          </tr>
+          <tr>
+            <td><str>Name</str></td>
+            <td>{{ member.name }}</td>
+          </tr>
+          <tr>
+            <td><str>Student ID</str></td>
+            <td>{{ member.student_id }}</td>
+          </tr>
+          <tr>
+            <td><str>Course</str></td>
+            <td>{{ member.course }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+  {% endfor %}
+{% endblock %}
+
+</html>
