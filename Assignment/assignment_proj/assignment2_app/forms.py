@@ -3,7 +3,7 @@ from .models import*
 
 class ThesisForm(forms.ModelForm):
   class Meta:
-    model = TestThesis
+    model = Project
     
     exclude = []
     

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from assignment2_app.data import *
-from .models import TestThesis
+from .models import Project
 from .forms import ThesisForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -57,7 +57,7 @@ def create_members():
 #                            'Development of a Virtual Reality System to Test Binaural Hearing',
 #                   'A virtual reality system could be used to objectively test the binaural hearing ability of...',
 #                   'Sami Azam' ))
-#    the_topics.append(Thesis(41, 'Cryptomining is the process of mining crypto currencies by running a sequence of algorithms. Traditionally, to mine new crypto coins, a person (or group of people) would buy expensive computers and spend a lot of time and money running them to perform the difficult calculations to generate crypto coins. Some website owners have started taking a different approach; they have put the software which runs those difficult calculations into their websites Javascript. This then causes the computers belonging to the visitors of their website to run those calculations for them, instead of running them themselves. In other words, when you visit a website with an embedded crypto-miner in it, your computer and electricity is used to try to generate crypto-coins for the owners of that website. Although there are various measures being applied to stop these illegitimate minings, the trend is still increasing. This research aims to find out potential gaps in current methodologies and develop a solution that can fulfil the gap. It also aims to find out:',
+#    the_topics.append(Thesis(41, 'Cryptomining is the process of mining crypto currencies by running a sequence of algorithms. Traditionally, to mine new crypto coins, a person (or group of people) would buy expensive computers and spend a lot of time and money running them to perform the difficult calculations to generate crypto coins. Some website owners have started taking a different approach; they have put the software which runs those difficult calculations into their website's Javascript. This then causes the computers belonging to the visitors of their website to run those calculations for them, instead of running them themselves. In other words, when you visit a website with an embedded crypto-miner in it, your computer and electricity is used to try to generate crypto-coins for the owners of that website. Although there are various measures being applied to stop these illegitimate minings, the trend is still increasing. This research aims to find out potential gaps in current methodologies and develop a solution that can fulfil the gap. It also aims to find out: what type of crypto mining methodologies are being applied; apart from crypto-mining, what other security risks may it introduce, such as cryptojacking; and how current web standards are tackling this problem?',
 #                             'Current Trends on Cryptomining and Its Potential Impact on Cryptocurrencies',
 #                   'Cryptomining is the process of mining crypto currencies by running a sequence of algorithms. Traditionally, to mine new crypto coins, a person (or group of people) would buy expensive computers and spend a lot of time and money running them to perform the difficult...',
 #                   'Sami Azam', ))
@@ -89,7 +89,7 @@ def homemessages():
 # Requests:
 def view_thesis(request, tid):  # Step 2
    
-   thesis = TestThesis.objects.get(id=tid)
+   thesis = Project.objects.get(id=tid)
    
    page_data = {
       'thesis': thesis
@@ -124,7 +124,7 @@ def save_new_thesis(form):   # Step 3
 def edit_thesis(request, key=1):   # Step 3
     
    # Fetch exixting publisher record from database
-   thesis = TestThesis.objects.get(id=int(key))
+   thesis = Project.objects.get(id=int(key))
    
    if request.method == 'POST':
       
@@ -149,7 +149,7 @@ def edit_thesis(request, key=1):   # Step 3
 def delete_publisher(request,key):
     
     # Fetch exixting publisher record from database
-    thesis = TestThesis.objects.get(id=int(key))
+    thesis = Project.objects.get(id=int(key))
     
     if request.method == 'POST':
         
@@ -168,7 +168,7 @@ def delete_publisher(request,key):
 
 def page2(request):
 
-   theses = TestThesis.objects.all()
+   theses = Project.objects.all()
    
    page_data = {
       "theses": theses
@@ -187,14 +187,14 @@ def about(request):
 
 
 
-def show_thesis_topic(request, tid):
+def show_thesis_topic(request, TID):
 
-   theses = TestThesis.objects.all()
+   theses = Project.objects.all()
 
    thesis_selected = None
 
    for thesis in theses:
-      if thesis.id == tid:
+      if thesis.TID == TID:
          thesis_selected = thesis
          break
          

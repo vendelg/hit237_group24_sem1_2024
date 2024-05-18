@@ -3,13 +3,8 @@
 {% block main_body %}
 
 {% if thesis %} 
-
-<h2 style="color: darkblue; font-size: 20;">Supervisor: {{ thesis.sup_name }}</h2> 
-
-<p style="font-family: 'Libre Franklin', sans-serif; font-size: 15; line-height: 1.2; max-width: 600px;">
-    {{ thesis.desc }}
-</p>
-    
+<h2 style="color: darkblue; font-size: 20;">Supervisor: {{ thesis.supName }}</h2> 
+<p style="font-family: 'Libre Franklin', sans-serif; font-size: 15; line-height: 1.2; max-width: 600px;">{{ thesis.desc }}</p>   
 {% endif %}
 
 {% endblock %}

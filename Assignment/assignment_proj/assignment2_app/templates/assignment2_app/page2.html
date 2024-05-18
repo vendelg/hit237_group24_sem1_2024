@@ -8,8 +8,8 @@
 
 {% block main_body %}
 {% for thesis in theses %}
-  <h2><a href="page3/{{ thesis.id }} ">{{ thesis.title }}</a></h2>
-  <div class= "supervisor_name"> Supervisor: {{ thesis.sup_name }} </div>
+  <h2><a href="page3/{{ thesis.TID }} ">{{ thesis.title }}</a></h2>
+  <div class= "supervisor_name"> Supervisor: {{ thesis.supName }} </div>
   <div class= "desc"> {{ thesis.desc }} </div>
 {% endfor %}
 {% endblock %}
