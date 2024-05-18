@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang = "es">
+<meta charset="UTF-8">
+{% load static %}
+
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}"/>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block page_title %}CDU Theses{% endblock %}
+    </title>
+  </head>
+
+  <body>
+    <div>
+      {% block page_heading %}<h1 >No Heading Implemented!</h1>{% endblock %}
+      <div>
+        <nav>
+          
+          <a href="{% url 'homepage' %}">Home</a>
+          <a href="{% url 'page2' %}">Theses</a>
+          <a href="{% url 'about' %}">About Us</a>
+
+        </nav>
+      </div>
+      <hr>
+      {% block main_body %}{% endblock %}
+      <footer class = "footer">
+        <p>2024 Group 24 -- For assignment purposes only!</p>
+      </footer>
+    </div>
+  </body>
+
+</html>
