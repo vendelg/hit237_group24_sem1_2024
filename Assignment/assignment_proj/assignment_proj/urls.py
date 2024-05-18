@@ -23,7 +23,7 @@ urlpatterns = [
     re_path(r'admin/', admin.site.urls),
     re_path(r'page2/?$', views.page2, name='page2'),
     re_path(r'about/?$', views.about, name='about'),
-    path('page3/<int:TID>/', views.show_thesis_topic),
+    path('page3/<tid>/', views.show_thesis_topic),
     re_path(r'$', views.home, name = 'homepage'),
     path('view_thesis/<int:tid>', views.view_thesis, name='view_thesis'),
     path('add/thesis/', views.add_thesis, name='add_thesis'),

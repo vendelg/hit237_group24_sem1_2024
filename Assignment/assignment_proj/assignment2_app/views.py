@@ -187,15 +187,14 @@ def about(request):
 
 
 
-def show_thesis_topic(request, TID):
+def show_thesis_topic(request, tid):
 
-   theses = Project.objects.all()
-
+   thesis = Project.objects.all()
    thesis_selected = None
 
-   for thesis in theses:
-      if thesis.TID == TID:
-         thesis_selected = thesis
+   for topics in thesis:
+      if topics.tid == tid:
+         thesis_selected = topics
          break
          
    
