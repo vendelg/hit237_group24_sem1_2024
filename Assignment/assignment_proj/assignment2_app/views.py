@@ -149,7 +149,7 @@ def edit_thesis(request, key=1):   # Step 3
 def delete_publisher(request,key):
     
     # Fetch exixting publisher record from database
-    thesis = Project.objects.get(id=int(key))
+    thesis = Project.objects.get(tid=int(key))
     
     if request.method == 'POST':
         

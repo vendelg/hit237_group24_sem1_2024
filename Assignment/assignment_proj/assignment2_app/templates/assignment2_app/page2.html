@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block main_body %}
+<a href="add/thesis/"><button>Add Thesis</button></a>
 {% for thesis in theses %}
   <h2><a href="page3/{{ thesis.tid }} ">{{ thesis.title }}</a></h2>
   <div class= "supervisor_name"> Supervisor: {{ thesis.supName }} </div>
