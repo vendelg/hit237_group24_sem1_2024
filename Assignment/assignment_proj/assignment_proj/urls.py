@@ -24,12 +24,10 @@ urlpatterns = [
     re_path(r'page2/?$', views.page2, name='page2'),
     re_path(r'about/?$', views.about, name='about'),
     path('page3/<tid>/', views.show_thesis_topic),
+    path('modify/thesis/<tid>', views.modify_thesis, name='modify_thesis'),
     re_path(r'$', views.home, name = 'homepage'),
-    path('view_thesis/<int:tid>', views.view_thesis, name='view_thesis'),
     path('add/thesis/', views.add_thesis, name='add_thesis'),
     path('add/thesis/done/', views.add_thesis_submit),
-    re_path(r'^edit/thesis/(?P<key>\d+)?/?$', views.edit_thesis),
-    re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

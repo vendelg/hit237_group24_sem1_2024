@@ -8,6 +8,7 @@ class ThesisForm(forms.ModelForm):
     exclude = []
     
     labels = {
+      'tid': 'Thesis ID',
       'desc': 'Description',
-      'sup_name': 'Supervisor'
+      'supName': 'Supervisor'
     }
