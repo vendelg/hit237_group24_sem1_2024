@@ -4,6 +4,18 @@ from .models import Project
 from .forms import ThesisForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+
+
+
+
+#Redirect
+from django.shortcuts import redirect
+
+#LoginForm
+from . forms import LoginForm, AccAuthForm
+
+#Authenticate 
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 app_name = 'assignment2_app/'
@@ -207,3 +219,41 @@ def home(request):
    }
 
    return render(request, 'assignment2_app/homepage.html', home_context)
+
+
+#LoginView
+def logout_view(request):
+   logout (request)
+   return redirect ('homepage')
+
+def login_view(request, *args, **kwargs):
+
+   context = {}
+   user = request.user 
+   if user.is_authenticated: 
+      return redirect("homepage")
+   
+   if request.POST:
+      form = AccAuthForm(request.POST)
+      if form.is_valid():
+         email = request.POST['email']
+         password = request.POST['password']
+         user = authenticate(email=email, password=password)
+         if user:
+            login(request, user)
+            destination = get_redirect(request)
+            if destination:
+               return redirect(destination)
+            return redirect ("homepage")
+         
+      else:
+         context['login_form'] = form
+   return render (request, "assignment2_app/login.html", context)
+
+def get_redirect(request):
+   redirect = None
+   if request.GET:
+      if request.GET.get("next"):
+         redirect = str(request.GET.get("next"))
+         
+   return redirect
