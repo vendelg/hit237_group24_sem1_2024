@@ -29,9 +29,14 @@ urlpatterns = [
     path('add/thesis/', views.add_thesis, name='add_thesis'),
     path('add/thesis/done/', views.add_thesis_submit),
     re_path(r'^edit/thesis/(?P<key>\d+)?/?$', views.edit_thesis),
+<<<<<<< Updated upstream
     #re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
     path ('login/', views.login_view, name = "login"),
     path('logout/', views.logout_view, name= "logout"), 
+=======
+    re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
+    re_path(r'dashboard/', views.dashboard, name='dashboard')
+>>>>>>> Stashed changes
 ]
 
 urlpatterns += staticfiles_urlpatterns()
