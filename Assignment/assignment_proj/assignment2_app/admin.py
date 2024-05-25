@@ -23,7 +23,15 @@ class AccountAdmin(UserAdmin):
     fieldsets= ()
 
 
+    #I just used this to test stuff out: (JP)
 
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+
+    def delete_model(self, request, obj):
+        super().delete_model(request, obj)
+        print("DELETE MODEL DETECTED")
 
 
 admin.site.register(Accounts, AccountAdmin)

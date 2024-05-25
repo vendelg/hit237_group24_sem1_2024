@@ -51,6 +51,17 @@ class MyAccount_Manager(BaseUserManager):
 
 
 class Accounts(AbstractBaseUser):
+
+    class Role(models.TextChoices):
+
+        ADMIN = "ADMIN", 'Admin'
+        STUDENT = "STUDENT", 'Student'
+        SUPERVISOR = "SUPERVISOR", 'Supervisor'
+
+
+    role = models.CharField(max_length=50, default = Role.SUPERVISOR, choices = Role.choices)
+
+
     email= models.EmailField(verbose_name="email", max_length = 60, unique = True)
     username = models.CharField (max_length=30, unique=True)
     is_admin = models.BooleanField(default=False)
@@ -58,6 +69,8 @@ class Accounts(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     hide_email = models.BooleanField(default=True)
+
+   
 
     objects = MyAccount_Manager()
 
@@ -72,6 +85,7 @@ class Accounts(AbstractBaseUser):
 
     def has_module_perms (self, app_label):
         return True
+<<<<<<< Updated upstream
 =======
     return str(self.id) + " : " + self.title
   
@@ -83,4 +97,6 @@ class Supervisor(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User)
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
