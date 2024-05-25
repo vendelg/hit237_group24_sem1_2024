@@ -5,12 +5,12 @@
     </head>
     <body>
         <h1>New Student has Applied to a Thesis</h1>
-        
+        {% for input in data %}
         <h3>List of Students and Group Number applying for Thesis</h3>
-        {{ input.StudentID }}
-        <p>Group:</p>
-        {{ input.GroupNumber }}
-        <br>
+        <p> {{ input.StudentID }}  </p>
+        
+        <p>Group:  {{ input.GroupNumber }}</p>
+    
         {% endfor %}
     </body>
 </html>

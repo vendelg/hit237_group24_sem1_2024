@@ -84,9 +84,9 @@ class Accounts(AbstractBaseUser):
 #Thesis Application
 
 class ThesisApplication(models.Model):
-  ThesisID = models.CharField(max_length=10, default='ThesisID')
-  GroupNumber = models.CharField(max_length=10, default='Group Number')
-  StudentID = models.CharField(max_length=10, default='Student ID')
+  ThesisID = models.CharField(max_length = 50, default = "ID")
+  GroupNumber = models.CharField(max_length=10, default='Group Number', unique= True)
+  StudentID = models.CharField(max_length=10, default='Student ID', unique= True)
 
   def __str__(self):
         return u'%s %s' % (self.StudentID, self.GroupNumber)

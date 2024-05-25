@@ -261,11 +261,20 @@ def get_redirect(request):
 
 #Thesis Application for Student
 
-def thesis_application(request):
+def thesis_application(request, tid):
+   
+   thesis = Project.objects.all()
+   thesis_selected = None
 
+   for topics in thesis:
+      if topics.tid == tid:
+         thesis_selected = topics
+         break
+         
    context = { 
      "application_form" : ApplicationForm(),
-   
+     "thesis" :thesis_selected,
+
    }                
    
    return render(request, 'assignment2_app/apply_thesis.html', context)
@@ -274,17 +283,20 @@ def application_submit(request):
    data = ThesisApplication.objects.all()
    
    if request.method != 'POST':
-      return HttpResponseRedirect('apply/thesis/notice/')
+      return HttpResponseRedirect('apply/thesis')
    else:
       context = {
          'data' : data,
 
          }
       form = ApplicationForm(request.POST)
+
       if form.is_valid():
          save_application(form)
       else:
          context = {'val_errors': form.errors, }
+         return HttpResponseRedirect('../../apply/thesis')
+          
       
    return render(request, 'assignment2_app/notice.html', context)
 
@@ -309,12 +321,9 @@ def registration_submit(request):
       context = {'data' : data}
       form = StudentForm(request.POST)
       if form.is_valid():
-         save_new_student(form)
+         form.save()
       else:
          context = {'val_errors': form.errors, }
       
    return render(request, 'assignment2_app/done.html', context)
 
-def save_new_student(form):
-
-   new_student_object = form.save()

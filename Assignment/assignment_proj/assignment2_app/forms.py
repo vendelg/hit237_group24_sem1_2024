@@ -45,11 +45,18 @@ class AccAuthForm(forms.ModelForm):
             
 #Allows Students to apply to forms           
 
+
+
 class ApplicationForm(forms.ModelForm):
+
+  
+      
   class Meta:
+
+        
     model = ThesisApplication
 
-    fields = ['ThesisID', 'GroupNumber', 'StudentID']
+    fields = ['GroupNumber', 'StudentID']
 
     labels = {'ThesisID' : 'Thesis ID', 'GroupNumber' : 'Group Number', 'StudentID' : 'Student ID'}
 

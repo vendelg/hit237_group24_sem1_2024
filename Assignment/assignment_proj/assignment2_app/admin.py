@@ -36,8 +36,6 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(Accounts, AccountAdmin)
 
-
-
 admin.site.register(ThesisApplication)
 
 admin.site.register(Student)

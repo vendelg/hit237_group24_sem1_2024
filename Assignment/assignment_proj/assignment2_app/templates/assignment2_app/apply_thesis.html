@@ -8,12 +8,23 @@
       </title>
 </head>
 <body>
-    <form action="notice/" method = "POST" novildate>
-        {% csrf_token %}
-        <table>
-            {{ application_form.as_table }}
-        </table>
-        <input type="submit" value ="Apply">
-    </form>
+
+{% if thesis %} 
+
+<h2 style="color: darkblue; font-size: 20;">THESIS: {{ thesis.title }}</h2> 
+
+<form action="notice/" method = "POST" novildate>
+    {% csrf_token %}
+   <h1> THESIS ID: {{thesis.tid}} </h1>
+    <table>
+        {{ application_form.as_table }}
+    </table>
+    <input type="submit" value ="Apply">
+</form>
+
+
+{% endif %}
+
+
 </body>
 </html>
