@@ -4,7 +4,6 @@ from .models import Project
 from .forms import ThesisForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-<<<<<<< Updated upstream
 
 
 
@@ -13,13 +12,10 @@ from django.urls import reverse
 from django.shortcuts import redirect
 
 #LoginForm
-from . forms import LoginForm, AccAuthForm
+from .forms import LoginForm, AccAuthForm
 
 #Authenticate 
 from django.contrib.auth import authenticate, login, logout
-=======
-from .models import Student, Supervisor, Coordinator
->>>>>>> Stashed changes
 # Create your views here.
 
 app_name = 'assignment2_app/'
