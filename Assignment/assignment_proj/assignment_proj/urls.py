@@ -33,7 +33,9 @@ urlpatterns = [
     path ('login/', views.login_view, name = "login"),
     path('logout/', views.logout_view, name= "logout"), 
     path('apply/thesis', views.thesis_application, name='application_form'),
-    path('apply/notice/', views.application_submit, name='applicationnotice')
+    path('apply/notice/', views.application_submit, name='applicationnotice'),
+    path('register/student/', views.student_registration, name = 'registerform'),
+    path('register/student/done/', views.registration_submit, name = 'registrationdone'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

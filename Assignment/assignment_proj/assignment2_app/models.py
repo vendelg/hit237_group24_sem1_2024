@@ -81,3 +81,24 @@ class Accounts(AbstractBaseUser):
     def has_module_perms (self, app_label):
         return True
 
+#Thesis Application
+
+class ThesisApplication(models.Model):
+  ThesisID = models.CharField(max_length=10, default='ThesisID')
+  GroupNumber = models.CharField(max_length=10, default='Group Number')
+  StudentID = models.CharField(max_length=10, default='Student ID')
+
+  def __str__(self):
+        return u'%s %s' % (self.StudentID, self.GroupNumber)
+  
+#Registered Students
+
+class Student(models.Model):
+    firstname = models.CharField(max_length=30, default='required')
+    lastname = models.CharField(max_length=30,default='required')
+    email = models.EmailField(max_length=50, default='required (@students.cdu.edu.au)')
+    password = models.CharField(max_length=30, default='required')
+    studentid = models.CharField(max_length=7, default='required')
+    
+    def __str__(self):
+        return u'%s %s' % (self.firstname, self.lastname)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from assignment2_app.models import Project, ThesisApplication
+from assignment2_app.models import Project, ThesisApplication, Student
 from django.contrib.auth.admin import UserAdmin
 
 from assignment2_app.models import Accounts
@@ -39,5 +39,7 @@ admin.site.register(Accounts, AccountAdmin)
 
 
 admin.site.register(ThesisApplication)
+
+admin.site.register(Student)
 
 admin.site.register(Project) # Step 1

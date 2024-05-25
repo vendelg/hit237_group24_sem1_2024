@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Done</title>
+    </head>
+    <body>
+        <h1>Done!</h1>
+        <h3>Registered Students</h3>
+        {% for input in data %}
+        {{ input.firstname}}
+        {{ input.lastname }}
+        <br>
+        {% endfor %}
+    </body>
+</html>

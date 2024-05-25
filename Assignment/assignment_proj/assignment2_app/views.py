@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from assignment2_app.data import *
-from .models import Project, ThesisApplication
-from .forms import ThesisForm, ApplicationForm
+from .models import Project, ThesisApplication, Student
+from .forms import ThesisForm, ApplicationForm, StudentForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -291,3 +291,30 @@ def application_submit(request):
 def save_application(form):
    new_thesis_application_object = form.save()
 
+#Student Registration
+
+def student_registration(request):
+
+   context = { 
+     "student_form" : StudentForm(),
+   }                
+   return render(request, 'assignment2_app/register_student.html', context)
+
+def registration_submit(request):
+   data = Student.objects.all()
+   
+   if request.method != 'POST':
+      return HttpResponseRedirect('register/student/done/')
+   else:
+      context = {'data' : data}
+      form = StudentForm(request.POST)
+      if form.is_valid():
+         save_new_student(form)
+      else:
+         context = {'val_errors': form.errors, }
+      
+   return render(request, 'assignment2_app/done.html', context)
+
+def save_new_student(form):
+
+   new_student_object = form.save()

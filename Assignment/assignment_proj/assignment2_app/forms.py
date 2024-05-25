@@ -43,6 +43,8 @@ class AccAuthForm(forms.ModelForm):
             if not authenticate(email = email, password = password):
                 raise forms.ValidationError("Incorrect Username or Password")
             
+#Allows Students to apply to forms           
+
 class ApplicationForm(forms.ModelForm):
   class Meta:
     model = ThesisApplication
@@ -50,3 +52,13 @@ class ApplicationForm(forms.ModelForm):
     fields = ['ThesisID', 'GroupNumber', 'StudentID']
 
     labels = {'ThesisID' : 'Thesis ID', 'GroupNumber' : 'Group Number', 'StudentID' : 'Student ID'}
+
+#Allows Students to register
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+
+        fields = ['firstname', 'lastname', 'email', 'password', 'studentid',]
+
+        labels = {'firstname' : 'First Name', 'lastname' : 'Last Name', 'email' : 'Email', 'password' : 'Password', 'studentid' : 'Student ID'}
