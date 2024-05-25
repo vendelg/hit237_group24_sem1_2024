@@ -1,10 +1,5 @@
 from django.db import models
-<<<<<<< Updated upstream
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-=======
-from django.contrib.auth.models import User
-
->>>>>>> Stashed changes
 # Create your models here.
 
 class Project(models.Model):
