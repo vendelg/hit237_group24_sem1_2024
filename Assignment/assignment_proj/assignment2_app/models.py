@@ -9,7 +9,7 @@ class Project(models.Model):
   supName = models.CharField(max_length=30)
   
   def __str__(self):
-<<<<<<< Updated upstream
+
     return self.tid + " : " + self.title
   
 
@@ -80,18 +80,4 @@ class Accounts(AbstractBaseUser):
 
     def has_module_perms (self, app_label):
         return True
-<<<<<<< Updated upstream
-=======
-    return str(self.id) + " : " + self.title
-  
-class Coordinator(models.Model):
-    user = models.OneToOneField(User)
 
-class Supervisor(models.Model):
-    user = models.OneToOneField(User)
-
-class Student(models.Model):
-    user = models.OneToOneField(User)
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
