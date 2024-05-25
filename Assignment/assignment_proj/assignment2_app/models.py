@@ -49,7 +49,7 @@ class Accounts(AbstractBaseUser):
 
     class Role(models.TextChoices):
 
-        ADMIN = "ADMIN", 'Admin'
+        COORDINATOR = "COORDINATOR", 'Coordinator'
         STUDENT = "STUDENT", 'Student'
         SUPERVISOR = "SUPERVISOR", 'Supervisor'
 
