@@ -12,7 +12,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 
 #LoginForm
-from .forms import LoginForm, AccAuthForm
+from . forms import LoginForm, AccAuthForm
 
 #Authenticate 
 from django.contrib.auth import authenticate, login, logout
@@ -220,7 +220,6 @@ def home(request):
 
    return render(request, 'assignment2_app/homepage.html', home_context)
 
-<<<<<<< Updated upstream
 
 #LoginView
 def logout_view(request):
@@ -258,11 +257,3 @@ def get_redirect(request):
          redirect = str(request.GET.get("next"))
          
    return redirect
-=======
-def dashboard(request):
-
-   context = { 
-   }
-
-   return render(request, 'assignment2_app/dashboard.html', context)
->>>>>>> Stashed changes
