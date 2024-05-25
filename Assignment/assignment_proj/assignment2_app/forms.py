@@ -5,7 +5,7 @@ from .models import*
 
 from django.contrib.auth.forms import AuthenticationForm
 
-from assignment2_app.models import Accounts
+from assignment2_app.models import Accounts, ThesisApplication
 from django.contrib.auth import authenticate
 
 from django import forms
@@ -42,3 +42,11 @@ class AccAuthForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email = email, password = password):
                 raise forms.ValidationError("Incorrect Username or Password")
+            
+class ApplicationForm(forms.ModelForm):
+  class Meta:
+    model = ThesisApplication
+
+    fields = ['ThesisID', 'GroupNumber', 'StudentID']
+
+    labels = {'ThesisID' : 'Thesis ID', 'GroupNumber' : 'Group Number', 'StudentID' : 'Student ID'}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang = "es">
+<meta charset="UTF-8">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Thesis Application 
+      </title>
+</head>
+<body>
+    <form action="notice/" method = "POST" novildate>
+        {% csrf_token %}
+        <table>
+            {{ application_form.as_table }}
+        </table>
+        <input type="submit" value ="Apply">
+    </form>
+</body>
+</html>

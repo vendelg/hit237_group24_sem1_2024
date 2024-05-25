@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from assignment2_app.data import *
-from .models import Project
-from .forms import ThesisForm
+from .models import Project, ThesisApplication
+from .forms import ThesisForm, ApplicationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -258,3 +258,36 @@ def get_redirect(request):
          redirect = str(request.GET.get("next"))
          
    return redirect
+
+#Thesis Application for Student
+
+def thesis_application(request):
+
+   context = { 
+     "application_form" : ApplicationForm(),
+   
+   }                
+   
+   return render(request, 'assignment2_app/apply_thesis.html', context)
+
+def application_submit(request):
+   data = ThesisApplication.objects.all()
+   
+   if request.method != 'POST':
+      return HttpResponseRedirect('apply/thesis/notice/')
+   else:
+      context = {
+         'data' : data,
+
+         }
+      form = ApplicationForm(request.POST)
+      if form.is_valid():
+         save_application(form)
+      else:
+         context = {'val_errors': form.errors, }
+      
+   return render(request, 'assignment2_app/notice.html', context)
+
+def save_application(form):
+   new_thesis_application_object = form.save()
+

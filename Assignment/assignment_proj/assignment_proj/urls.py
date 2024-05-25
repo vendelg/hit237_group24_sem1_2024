@@ -32,6 +32,8 @@ urlpatterns = [
     #re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
     path ('login/', views.login_view, name = "login"),
     path('logout/', views.logout_view, name= "logout"), 
+    path('apply/thesis', views.thesis_application, name='application_form'),
+    path('apply/notice/', views.application_submit, name='applicationnotice')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
