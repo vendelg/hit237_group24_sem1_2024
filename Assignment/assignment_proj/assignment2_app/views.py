@@ -122,16 +122,16 @@ def add_thesis_submit(request):
       page_data = {}
       form = ThesisForm(request.POST)
       if form.is_valid():
-         save_new_thesis(form)
+         form.save()
          return HttpResponseRedirect(reverse('homepage'))
       else:
          page_data = { 'val_errors': form.errors, }
    
    return render(request, app_name + 'done.html', page_data)
 
-def save_new_thesis(form):   # Step 3
-   
-   new_thesis_object = form.save()
+
+
+
 
 def modify_thesis(request, tid):
    thesis = Project.objects.get(tid=int(tid))
@@ -154,6 +154,7 @@ def modify_thesis(request, tid):
       page_data = {'thesisForm': form,}
 
    return render(request, app_name + 'edit_thesis.html', page_data)
+
 
 def edit_thesis(form):
 
