@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate
 
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
+from .models import notification
 
 
 class ThesisForm(forms.ModelForm):
@@ -69,3 +70,10 @@ class StudentForm(forms.ModelForm):
         fields = ['firstname', 'lastname', 'email', 'password', 'studentid',]
 
         labels = {'firstname' : 'First Name', 'lastname' : 'Last Name', 'email' : 'Email', 'password' : 'Password', 'studentid' : 'Student ID'}
+
+
+
+class notificationForm(forms.ModelForm):
+    class Meta:
+        model = notification
+        fields = ['content']

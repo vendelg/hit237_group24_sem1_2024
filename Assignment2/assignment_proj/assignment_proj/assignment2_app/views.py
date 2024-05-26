@@ -139,6 +139,15 @@ def home(request):
 
    return render(request, 'assignment2_app/homepage.html', home_context)
 
+def dashboard(request):
+   
+
+   home_context = {
+      'homemessages' : homemessages,
+   }
+
+   return render(request, 'assignment2_app/dashboard.html', home_context)
+
 
 
 

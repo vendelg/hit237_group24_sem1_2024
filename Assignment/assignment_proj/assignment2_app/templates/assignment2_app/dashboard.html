@@ -5,14 +5,19 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <header>
-        <nav>
-            <ul>
-              <a href="{% url 'homepage' %}">Home</a>
-              <a href="{% url 'page2' %}">Theses</a>
-              <a href="{% url 'about' %}">About Us</a>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>Notification Board</h1>
+        <form method="post" class="message-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Notification</button>
+        </form>
+        <ul class="messages">
+            {% for notification in notifications %}
+                <li>{{ notification.content }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
   </html>
 

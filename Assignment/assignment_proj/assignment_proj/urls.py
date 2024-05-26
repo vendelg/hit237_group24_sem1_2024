@@ -36,6 +36,7 @@ urlpatterns = [
     path('apply/notice/', views.application_submit, name='applicationnotice'),
     path('register/student/', views.student_registration, name = 'registerform'),
     path('register/student/done/', views.registration_submit, name = 'registrationdone'),
+    path('dashboard/', views.dashboard)
 ]
 
 urlpatterns += staticfiles_urlpatterns()

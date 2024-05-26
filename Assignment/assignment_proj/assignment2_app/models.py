@@ -102,3 +102,7 @@ class Student(models.Model):
     
     def __str__(self):
         return u'%s %s' % (self.firstname, self.lastname)
+    
+class notification(models.Model):
+    messages = models.TextField(max_length=None)
+    

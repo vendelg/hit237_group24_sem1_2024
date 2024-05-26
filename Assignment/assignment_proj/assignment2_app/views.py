@@ -327,3 +327,13 @@ def registration_submit(request):
       
    return render(request, 'assignment2_app/done.html', context)
 
+def dashboard(request):
+   
+
+   home_context = {
+      'homemessages' : homemessages,
+   }
+
+   return render(request, 'assignment2_app/dashboard.html', home_context)
+
+
