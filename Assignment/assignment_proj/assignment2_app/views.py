@@ -337,3 +337,6 @@ def dashboard(request):
    return render(request, 'assignment2_app/dashboard.html', home_context)
 
 
+def notification(request):
+   
+   return render(request, 'assignment2_app/notification.html')

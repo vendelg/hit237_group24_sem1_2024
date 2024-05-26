@@ -1,23 +1,20 @@
-
+{% extends "assignment2_app/base.html" %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Dashboard</title>
   </head>
-  <body>
+
+{% block main_body %}
+ 
     <div class="container">
-        <h1>Notification Board</h1>
-        <form method="post" class="message-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Notification</button>
-        </form>
-        <ul class="messages">
-            {% for notification in notifications %}
-                <li>{{ notification.content }}</li>
-            {% endfor %}
-        </ul>
+        <h1> Dashboard</h1>
+        <nav>
+          <a href= "{% url 'notification' %}" > <button>Notification</button></a>
+        </nav>
+      
     </div>
-</body>
+
+{% endblock %}
   </html>
 

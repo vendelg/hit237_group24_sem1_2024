@@ -1,0 +1,30 @@
+
+
+
+<!DOCTYPE html>
+<html lang = "es">
+<meta charset="UTF-8">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+       Notifications
+      </title>
+</head>
+<body>
+
+
+
+<h2 style="color: darkblue; font-size: 20;">NOTIFICATION</h2> 
+
+<form action="notice/" method = "POST" novildate>
+    {% csrf_token %}
+    {% for notification in notifications %}
+    <li>{{ notification.content }}</li>
+    {% endfor %}
+
+
+
+
+
+</body>
+</html>

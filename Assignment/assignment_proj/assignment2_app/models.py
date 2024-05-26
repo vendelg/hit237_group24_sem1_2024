@@ -104,5 +104,5 @@ class Student(models.Model):
         return u'%s %s' % (self.firstname, self.lastname)
     
 class notification(models.Model):
-    messages = models.TextField(max_length=None)
+    content = models.CharField(max_length = 50)
     

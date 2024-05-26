@@ -30,13 +30,16 @@ urlpatterns = [
     path('add/thesis/done/', views.add_thesis_submit),
     re_path(r'^edit/thesis/(?P<key>\d+)?/?$', views.edit_thesis),
     #re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
-    path ('login/', views.login_view, name = "login"),
+    path('login/', views.login_view, name = "login"),
     path('logout/', views.logout_view, name= "logout"), 
     path('apply/thesis/<tid>', views.thesis_application, name='application_form'),
     path('apply/notice/', views.application_submit, name='applicationnotice'),
     path('register/student/', views.student_registration, name = 'registerform'),
     path('register/student/done/', views.registration_submit, name = 'registrationdone'),
-    path('dashboard/', views.dashboard)
+    path('dashboard/', views.dashboard),
+    path('notification/', views.notification, name = 'notification'),
+
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()
