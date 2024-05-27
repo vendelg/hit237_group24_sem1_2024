@@ -16,9 +16,29 @@
         <nav>
           <a href= "{% url 'notification' user.id %}" > <button>Notification</button></a>
         </nav>
+
+        <h2>User Profile</h2>
+        <p>Email: {{ user.email }}</p>
+
+        <h3>Change Password</h3>
+        <form method="post" action="{% url 'change_password' user.id %}">
+          {% csrf_token %}
+          <div>
+            <label for="old_password">Old Password:</label>
+            <input type="password" id="old_password" name="old_password" required>
+          </div>
+          <div>
+            <label for="new_password1">New Password:</label>
+            <input type="password" id="new_password1" name="new_password1" required>
+          </div>
+          <div>
+            <label for="new_password2">Confirm New Password:</label>
+            <input type="password" id="new_password2" name="new_password2" required>
+          </div>
+          <button type="submit">Change Password</button>
+        </form>
       
     </div>
 
 {% endblock %}
-  </html>
-
+</html>

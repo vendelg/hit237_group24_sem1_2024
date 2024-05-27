@@ -4,8 +4,10 @@ from .models import Project, ThesisApplication, Student, Accounts
 from .forms import ThesisForm, ApplicationForm, StudentForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
-
+from django.contrib.auth.forms import PasswordChangeForm 
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash 
+from .models import Accounts
 
 
 #Redirect
@@ -374,6 +376,23 @@ def notification(request, *args, **kwargs):
       context ['user'] = account
 
    return render(request, 'assignment2_app/notification.html')
+
+def change_password(request, user_id):  
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  
+            messages.success(request, 'Your password was updated')
+            return redirect('profile', user_id=user_id)
+        else:
+            messages.error(request, 'error')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'assignment2_app/change_password.html', {
+        'form': form,
+        'user': Accounts
+    })
 
 def base(request, *args, **kwargs):
    

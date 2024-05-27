@@ -16,30 +16,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from assignment2_app import views
+from assignment2_app import views  # Correct import statement
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    re_path(r'admin/', admin.site.urls),
-    re_path(r'page2/?$', views.page2, name='page2'),
-    re_path(r'about/?$', views.about, name='about'),
-    path('page3/<tid>/', views.show_thesis_topic, name = 'details'),
-    path('modify/thesis/<tid>', views.modify_thesis, name='modify_thesis'),
-    re_path(r'$', views.home, name = 'homepage'),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^page2/?$', views.page2, name='page2'),
+    re_path(r'^about/?$', views.about, name='about'),
+    path('page3/<tid>/', views.show_thesis_topic, name='details'),
+    path('modify/thesis/<tid>/', views.modify_thesis, name='modify_thesis'),
+    re_path(r'^$', views.home, name='homepage'),
     path('add/thesis/', views.add_thesis, name='add_thesis'),
     path('add/thesis/done/', views.add_thesis_submit),
     re_path(r'^edit/thesis/(?P<key>\d+)?/?$', views.edit_thesis),
-    #re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
-    path('login/', views.login_view, name = "login"),
-    path('logout/', views.logout_view, name= "logout"), 
-    path('apply/thesis/<tid>', views.thesis_application, name='application_form'),
+    # re_path(r'^delete/thesis/(?P<key>\d+)?/?$', views.delete_publisher),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('apply/thesis/<tid>/', views.thesis_application, name='application_form'),
     path('apply/notice/', views.application_submit, name='applicationnotice'),
-    path('register/student/', views.student_registration, name = 'registerform'),
-    path('register/student/done/', views.registration_submit, name = 'registrationdone'),
+    path('register/student/', views.student_registration, name='registerform'),
+    path('register/student/done/', views.registration_submit, name='registrationdone'),
     path('dashboard/<user_id>/', views.dashboard, name='dashboard'),
-    path('notification/<user_id>/', views.notification, name = 'notification'),
-
-    
+    path('notification/<int:user_id>/', views.notification, name='notification'),
+    path('change_password/<int:user_id>/', views.change_password, name='change_password'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

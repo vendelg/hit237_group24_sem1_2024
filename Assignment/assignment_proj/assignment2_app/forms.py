@@ -65,7 +65,7 @@ class ApplicationForm(forms.ModelForm):
 
 class StudentForm(forms.ModelForm):
     class Meta:
-        model = Student
+        model = ()
 
         fields = ['firstname', 'lastname', 'email', 'password', 'studentid',]
 
