@@ -36,8 +36,8 @@ urlpatterns = [
     path('apply/notice/', views.application_submit, name='applicationnotice'),
     path('register/student/', views.student_registration, name = 'registerform'),
     path('register/student/done/', views.registration_submit, name = 'registrationdone'),
-    path('dashboard/', views.dashboard),
-    path('notification/', views.notification, name = 'notification'),
+    path('dashboard/<user_id>/', views.dashboard, name='dashboard'),
+    path('notification/<user_id>/', views.notification, name = 'notification'),
 
     
 ]

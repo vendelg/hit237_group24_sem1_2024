@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from assignment2_app.data import *
-from .models import Project, ThesisApplication, Student
+from .models import Project, ThesisApplication, Student, Accounts
 from .forms import ThesisForm, ApplicationForm, StudentForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 
@@ -327,16 +327,67 @@ def registration_submit(request):
       
    return render(request, 'assignment2_app/done.html', context)
 
-def dashboard(request):
+def dashboard(request, *args, **kwargs):
    
+   context = {}
+   user_id = kwargs.get("user_id")
+   try:
+      account=Accounts.objects.get(pk = user_id)
+   except Accounts.DoesNotExist:
+      return HttpResponse("That user does not exist")
 
-   home_context = {
-      'homemessages' : homemessages,
+   if account:
+      context['id'] = account.is_admin
+      context['username'] = account.username
+      context['email'] = account.email
+      context['hide_email'] = account.hide_email
+
+
+      user = request.user
+      if user.is_authenticated and user != account:
+         return redirect ("homepage")
+      elif not user.is_authenticated:
+         return redirect ("homepage")
+      
+      context ['user'] = account
+   
+   return render(request, 'assignment2_app/dashboard.html', context)
+
+
+def notification(request, *args, **kwargs):
+
+   context = {}
+   user_id = kwargs.get("user_id")
+   try:
+      account=Accounts.objects.get(pk = user_id)
+   except Accounts.DoesNotExist:
+      return HttpResponse("That user does not exist")
+
+   if account:
+     
+      user = request.user
+      if user.is_authenticated and user != account:
+         return redirect ("homepage")
+      elif not user.is_authenticated:
+         return redirect ("homepage")
+      
+      context ['user'] = account
+
+   return render(request, 'assignment2_app/notification.html')
+
+def base(request, *args, **kwargs):
+   
+   user_id = kwargs.get("user_id") 
+      
+   account=Accounts.objects.all(pk = user_id)
+   
+   
+   context = {
+      'user' : account ,
+      
    }
 
-   return render(request, 'assignment2_app/dashboard.html', home_context)
-
-
-def notification(request):
+ 
+      
+   return render(request, context)
    
-   return render(request, 'assignment2_app/notification.html')

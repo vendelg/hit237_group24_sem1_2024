@@ -4,13 +4,17 @@
   <head>
     <title>Dashboard</title>
   </head>
-
+  {% block page_heading %}
+  {% load static %}
+  <link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}">
+  <h1 class = "page_headings"><str>Profile</str></h1>
+  {% endblock %}
 {% block main_body %}
  
     <div class="container">
-        <h1> Dashboard</h1>
+      
         <nav>
-          <a href= "{% url 'notification' %}" > <button>Notification</button></a>
+          <a href= "{% url 'notification' user.id %}" > <button>Notification</button></a>
         </nav>
       
     </div>
