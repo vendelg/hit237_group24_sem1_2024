@@ -40,6 +40,7 @@ urlpatterns = [
     path('dashboard/<user_id>/', views.dashboard, name='dashboard'),
     path('change-password/', ChangePasswordView.as_view(), name='change_password'), 
     path('notification/<int:user_id>/', views.notification, name='notification'),
+     path('request/<tid>', views.Requests, name='Requests'),
     
 ]
 

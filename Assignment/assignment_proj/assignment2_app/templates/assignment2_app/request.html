@@ -11,14 +11,15 @@
 <body>
 
 
-    
+   
 
 <h2 style="color: darkblue; font-size: 20;">Request Form</h2> 
 
 <form  method = "POST" novildate> {% csrf_token %}
   
-    {%if thesis and thesis.is_request == True and thesis.tid and thesis.is_approved == False %}
-   
+    
+    {%if thesis and thesis.is_request == True and thesis.is_approved == False %}
+
         <p>{{thesis.title}}</p>
 
         <button type="submit" name="Approve" value="Approve">Approve</button>
@@ -35,7 +36,6 @@
 
     
 
-    {{text}}
 
 </body>
 </html>
