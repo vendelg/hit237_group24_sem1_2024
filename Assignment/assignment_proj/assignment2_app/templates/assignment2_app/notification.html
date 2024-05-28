@@ -14,15 +14,25 @@
 
 <h2 style="color: darkblue; font-size: 20;">NOTIFICATION</h2> 
 
-<form action="notice/" method = "POST" novildate>
-    {% csrf_token %}
-    {% for notification in notifications %}
-    <li>{{ notification.content }}</li>
-    {% endfor %}
 
 
 
+{%for theses in thesis %}
 
+{%if is_coordinator and theses.is_request == True and theses.is_approved == False%}
+
+
+<h2><a href="{% url 'Requests' theses.tid %}">{{ theses.title }}</a></h2>
+<div class= "supervisor_name"> Supervisor: {{ theses.supName }} </div>
+<div class= "desc"> {{ theses.desc }} </div>
+
+{% endif %}
+
+{%endfor%}
+
+
+
+    
 
 </body>
 </html>

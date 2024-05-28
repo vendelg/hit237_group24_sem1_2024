@@ -7,11 +7,6 @@ from assignment2_app.models import Accounts
 
 
 
-
-
-
-
-
 #CREATING THE ADMIN CLASS
 
 class AccountAdmin(UserAdmin):
@@ -25,7 +20,7 @@ class AccountAdmin(UserAdmin):
 
     #I just used this to test stuff out: (JP)
 
-    def save_model(self, request, obj, form, change):
+    def save_model(self, request, obj , form,  change):
         super().save_model(request, obj, form, change)
 
 
@@ -39,5 +34,7 @@ admin.site.register(Accounts, AccountAdmin)
 admin.site.register(ThesisApplication)
 
 admin.site.register(Student)
+
+
 
 admin.site.register(Project) # Step 1

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang = "es">
+<meta charset="UTF-8">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+       Notifications
+      </title>
+</head>
+<body>
+
+
+   
+
+<h2 style="color: darkblue; font-size: 20;">Request Form</h2> 
+
+<form  method = "POST" novildate> {% csrf_token %}
+  
+    
+    {%if thesis and thesis.is_request == True and thesis.is_approved == False %}
+
+        <p>{{thesis.title}}</p>
+
+        <button type="submit" name="Approve" value="Approve">Approve</button>
+        <button type="submit" name="Decline" value="Decline">Decline</button>
+    
+    {% endif %}
+    
+    
+
+
+
+
+    
+
+    
+
+
+</body>
+</html>

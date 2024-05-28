@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth import get_user_model
+from datetime import datetime 
+
 # Create your models here.
 
 class Project(models.Model):
@@ -7,7 +10,8 @@ class Project(models.Model):
   title = models.CharField(max_length=100)
   desc = models.CharField(max_length=1500)
   supName = models.CharField(max_length=30)
-  
+  is_approved = models.BooleanField(default=False)
+  is_request = models.BooleanField(default = True)
   def __str__(self):
 
     return self.tid + " : " + self.title
@@ -49,13 +53,14 @@ class Accounts(AbstractBaseUser):
 
     class Role(models.TextChoices):
 
-        COORDINATOR = "COORDINATOR", 'Coordinator'
-        STUDENT = "STUDENT", 'Student'
-        SUPERVISOR = "SUPERVISOR", 'Supervisor'
+        Coordinator = "COORDINATOR", 'Coordinator'
+        Student = "STUDENT", 'Student'
+        Supervisor = "SUPERVISOR", 'Supervisor'
+        
+   
+    role = models.CharField(max_length=50, default=Role.Supervisor, choices = Role.choices)
 
-
-    role = models.CharField(max_length=50, default = Role.SUPERVISOR, choices = Role.choices)
-
+    
 
     email= models.EmailField(verbose_name="email", max_length = 60, unique = True)
     username = models.CharField (max_length=30, unique=True)
@@ -64,7 +69,7 @@ class Accounts(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     hide_email = models.BooleanField(default=True)
-   
+    
 
     objects = MyAccount_Manager()
 
@@ -84,8 +89,7 @@ class Accounts(AbstractBaseUser):
 
 class ThesisApplication(models.Model):
   ThesisID = models.CharField(max_length = 50, default = "ID")
-  GroupNumber = models.CharField(max_length=10, default='Group Number', unique= True)
-  StudentID = models.CharField(max_length=10, default='Student ID', unique= True)
+  StudentID = models.CharField(max_length=10, default='Student ID', unique = True)
 
   def __str__(self):
         return u'%s %s' % (self.StudentID, self.GroupNumber)
@@ -102,6 +106,8 @@ class Student(models.Model):
     def __str__(self):
         return u'%s %s' % (self.firstname, self.lastname)
     
-class notification(models.Model):
-    content = models.CharField(max_length = 50)
+
+User = get_user_model()
+#class Requests(models.Model):
+    
     

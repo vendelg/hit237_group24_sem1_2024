@@ -1,20 +1,24 @@
+from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render
 from assignment2_app.data import *
 from .models import Project, ThesisApplication, Student, Accounts
 from .forms import ThesisForm, ApplicationForm, StudentForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from django.contrib.auth.forms import PasswordChangeForm 
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash 
 from .models import Accounts
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 
 #Redirect
 from django.shortcuts import redirect
 
-#LoginForm
-from . forms import LoginForm, AccAuthForm
+
+from . forms import AccAuthForm
 
 #Authenticate 
 from django.contrib.auth import authenticate, login, logout
@@ -100,7 +104,76 @@ def homemessages():
 
    return messages 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Requests:
+
+
+
+
+
+
+
+
+
+
+
+#BaseView
+
+
+def base(request, *args, **kwargs):
+   
+   user_id = kwargs.get("user_id") 
+      
+   account=Accounts.objects.all(pk = user_id)
+   
+   
+   context = {
+      'user' : account ,
+      
+   }
+
+   return render(request, context)
+
+
+
+def about(request):
+   
+   context = {
+      'list': create_members,
+   }
+   
+   return render(request, 'assignment2_app/about.html', context)
+
+
+def home(request):
+   
+
+   home_context = {
+      'homemessages' : homemessages,
+   }
+
+   return render(request, 'assignment2_app/homepage.html', home_context)
+
+#ThesisInteractionsViews
+
+
 def view_thesis(request, tid):  # Step 2
    
    thesis = Project.objects.get(id=tid)
@@ -112,29 +185,43 @@ def view_thesis(request, tid):  # Step 2
    return render(request, 'assignment2_app/view_thesis.html', page_data)
 
 def add_thesis(request):
-   
-   page_data = {'thesisForm': ThesisForm(), }
-   
-   return render(request, app_name + 'add_thesis.html', page_data)
+   page_data = {'thesisForm': ThesisForm()}
+   user= request.user
+   is_supervisor = False
+   is_coordinator = False
+   if user.role == Accounts.Role.Supervisor :
+      is_supervisor = True
+      page_data['is_supervisor'] = is_supervisor
+      return render(request, app_name + 'add_thesis.html', page_data)
+   elif user.role == Accounts.Role.Coordinator:
+      is_coordinator = True
+      page_data['is_coordinator'] = is_coordinator
 
-def add_thesis_submit(request):
+     
+   
+      return render(request, app_name + 'add_thesis.html', page_data)
+   else: return HttpResponse("You dont have the right permission.")
+
+def add_thesis_request(request):
+
    if request.method != 'POST':
       return HttpResponseRedirect('/add/thesis/')
    else:
-      page_data = {}
       form = ThesisForm(request.POST)
       if form.is_valid():
          form.save()
          return HttpResponseRedirect(reverse('homepage'))
       else:
-         page_data = { 'val_errors': form.errors, }
-   
-   return render(request, app_name + 'done.html', page_data)
+         return HttpResponse("Already exist")
+
 
 def modify_thesis(request, tid):
    thesis = Project.objects.get(tid=int(tid))
    
    page_data = None
+   user= request.user
+   is_supervisor = False
+   
 
    if request.method == 'POST':
       if 'edit' in request.POST:
@@ -151,7 +238,15 @@ def modify_thesis(request, tid):
       form = ThesisForm(instance=thesis)
       page_data = {'thesisForm': form,}
 
-   return render(request, app_name + 'edit_thesis.html', page_data)
+   if user.role == Accounts.Role.Supervisor :
+      is_supervisor = True
+      page_data['is_supervisor'] = is_supervisor
+      return render(request, app_name + 'edit_thesis.html', page_data)
+   elif user.role == Accounts.Role.Coordinator:
+      is_coordinator = True
+      page_data['is_coordinator'] = is_coordinator
+      return render(request, app_name + 'edit_thesis.html', page_data)
+   else: return HttpResponse("Wrong Permission")
 
 
 def edit_thesis(form):
@@ -175,21 +270,23 @@ def delete_thesis(pub):
 def page2(request):
 
    theses = Project.objects.all()
+   user = request.user
+   is_supervisor = False
+   is_coordinator = False
+   if user.is_authenticated: 
+      if user.role == Accounts.Role.Supervisor :
+         is_supervisor = True
+      elif user.role == Accounts.Role.Coordinator:
+         is_coordinator = True
    
    page_data = {
-      "theses": theses
+      "theses": theses,
+      "is_supervisor" : is_supervisor,
+      "is_coordinator": is_coordinator
+
    }
                                                                                                       
    return render(request, 'assignment2_app/page2.html', page_data)
-
-
-def about(request):
-   
-   context = {
-      'list': create_members,
-   }
-   
-   return render(request, 'assignment2_app/about.html', context)
 
 
 
@@ -210,17 +307,11 @@ def show_thesis_topic(request, tid):
 
    return render(request, 'assignment2_app/page3.html', context)
 
-def home(request):
-   
-
-   home_context = {
-      'homemessages' : homemessages,
-   }
-
-   return render(request, 'assignment2_app/homepage.html', home_context)
 
 
-#LoginView
+#Login/LogoutViews
+
+
 def logout_view(request):
    logout (request)
    return redirect ('homepage')
@@ -258,7 +349,7 @@ def get_redirect(request):
    return redirect
 
 #Thesis Application for Student
-
+@login_required
 def thesis_application(request, tid):
    
    thesis = Project.objects.all()
@@ -268,24 +359,47 @@ def thesis_application(request, tid):
       if topics.tid == tid:
          thesis_selected = topics
          break
-         
+      
+   user= request.user
+   is_student = False
+   is_supervisor = False
+   is_coordinator = False
+   if user.role == Accounts.Role.Student :
+      is_student = True
+   if user.role == Accounts.Role.Supervisor:
+      is_supervisor = True
+   if user.role == Accounts.Role.Coordinator:
+      is_coordinator = True
+     
+
+      if user.role == Accounts.Role.Student :
+          is_student = True
+      if user.role == Accounts.Role.Supervisor:
+         is_supervisor = True
+      if user.role == Accounts.Role.Coordinator:
+         is_coordinator = True
+
    context = { 
      "application_form" : ApplicationForm(),
      "thesis" :thesis_selected,
-
+     "is_student": is_student,
+     "is_supervisor": is_supervisor,
+     "is_coordinator": is_coordinator,
    }                
-   
    return render(request, 'assignment2_app/apply_thesis.html', context)
+   
+
 
 def application_submit(request):
    data = ThesisApplication.objects.all()
    
    if request.method != 'POST':
-      return HttpResponseRedirect('apply/thesis')
+      return HttpResponse("Invalid UserID/GroupID")
+   elif request.method == None:
+      return HttpResponse("Invalid UserID/GroupID")
    else:
       context = {
          'data' : data,
-
          }
       form = ApplicationForm(request.POST)
 
@@ -293,13 +407,16 @@ def application_submit(request):
          save_application(form)
       else:
          context = {'val_errors': form.errors, }
-         return HttpResponseRedirect('../../apply/thesis')
+         return HttpResponseRedirect('../../apply/thesis') and HttpResponse("Invalid UserID/GroupID")
+      
           
       
    return render(request, 'assignment2_app/notice.html', context)
 
 def save_application(form):
    new_thesis_application_object = form.save()
+
+
 
 #Student Registration
 
@@ -325,6 +442,10 @@ def registration_submit(request):
       
    return render(request, 'assignment2_app/done.html', context)
 
+
+
+#ProfileViews
+
 def dashboard(request, *args, **kwargs):
    
    context = {}
@@ -341,7 +462,10 @@ def dashboard(request, *args, **kwargs):
       context['hide_email'] = account.hide_email
 
 
+   
       user = request.user
+      
+
       if user.is_authenticated and user != account:
          return redirect ("homepage")
       elif not user.is_authenticated:
@@ -351,8 +475,11 @@ def dashboard(request, *args, **kwargs):
    
    return render(request, 'assignment2_app/dashboard.html', context)
 
+#notifications
 
 def notification(request, *args, **kwargs):
+
+   thesis = Project.objects.all()
 
    context = {}
    user_id = kwargs.get("user_id")
@@ -363,46 +490,75 @@ def notification(request, *args, **kwargs):
 
    if account:
      
+      context['id'] = account.is_admin
+      context['username'] = account.username
+      context['email'] = account.email
+      context['hide_email'] = account.hide_email
+   
       user = request.user
       if user.is_authenticated and user != account:
          return redirect ("homepage")
       elif not user.is_authenticated:
          return redirect ("homepage")
-      
-      context ['user'] = account
+    
+      user = request.user
+      is_coordinator = False
+      if user.is_authenticated: 
+         if user.role == Accounts.Role.Coordinator :
+            is_coordinator = True
 
-   return render(request, 'assignment2_app/notification.html')
+      context ['thesis'] = thesis
+      context ['is_coordinator'] = is_coordinator
 
-def change_password(request, user_id):  
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  
-            messages.success(request, 'Your password was updated')
-            return redirect('profile', user_id=user_id)
-        else:
-            messages.error(request, 'error')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'assignment2_app/change_password.html', {
-        'form': form,
-        'user': Accounts
-    })
+   return render(request, 'assignment2_app/notification.html', context)
+
+#change password
+
+class ChangePasswordView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('homepage')
+    template_name = 'assignment2_app/change_password.html'
 
 def base(request, *args, **kwargs):
    
    user_id = kwargs.get("user_id") 
-      
-   account=Accounts.objects.all(pk = user_id)
    
+
+def Requests (request, tid):
    
-   context = {
-      'user' : account ,
-      
+   thesis = Project.objects.all()
+   thesis_selected = None
+
+   for topics in thesis:
+      if topics.tid == tid:
+         thesis_selected = topics
+         break
+         
+   user = request.user
+   is_coordinator = False
+   if user.is_authenticated: 
+      if user.role == Accounts.Role.Coordinator :
+         is_coordinator = True
+
+   page_data = {
+      'thesis': thesis_selected,
+      "is_coordinator" : is_coordinator
    }
 
- 
-      
-   return render(request, context)
+   if request.method == 'POST':
+      if request.POST.get("Approve"):
+         for i in Project.objects.all():
+             if i.is_approved == False and i.is_request == True and i.tid == tid:
+               i.is_approved = True
+               i.is_request = False
+               i.save()
+         return HttpResponseRedirect('/')
+         
+      elif request.POST.get("Decline"):
+         for i in Project.objects.all():
+            if i.is_approved == False and i.is_request == True and i.tid == tid:
+                  i.delete()
+         return HttpResponseRedirect('/')
    
+                                                                                                      
+   return render(request, 'assignment2_app/request.html', page_data)
