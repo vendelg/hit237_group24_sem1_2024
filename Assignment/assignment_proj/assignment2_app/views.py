@@ -206,20 +206,9 @@ def add_thesis_request(request):
       form = ThesisForm(request.POST)
       if form.is_valid():
          form.save()
-
-      
          return HttpResponseRedirect(reverse('homepage'))
-      else:
-         return HttpResponse("Already exist")
-   
-<<<<<<< Updated upstream
-   return render(request, app_name + 'done.html', page_data)
-=======
-  
+      else: return HttpResponse("Already exist")
 
-
-
->>>>>>> Stashed changes
 
 def modify_thesis(request, tid):
    thesis = Project.objects.get(tid=int(tid))
@@ -514,7 +503,6 @@ def notification(request, *args, **kwargs):
       context ['thesis'] = thesis
       context ['is_coordinator'] = is_coordinator
 
-<<<<<<< Updated upstream
 def change_password(request, user_id):  
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -535,9 +523,9 @@ def change_password(request, user_id):
 def base(request, *args, **kwargs):
    
    user_id = kwargs.get("user_id") 
-=======
->>>>>>> Stashed changes
-      
+   context = {
+         "uer" : user_id
+      }
    return render(request, 'assignment2_app/notification.html', context)
 
 def Requests (request, tid):
