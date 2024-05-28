@@ -6,12 +6,13 @@
     <title>Add Thesis Form</title>
   </head>
   <body>
-    <form action="/add/thesis/done/" method="post" novalidate>
+    <form action="/add/thesis/request/" method="post" novalidate>
       {% csrf_token %}
       <table>
         {{ thesisForm.as_table }}
       </table>
-      <input type="submit" value="Add Thesis">
+      <input type="text" placeholder="Message" name="Message" id="Message"/>
+      <input type="submit" value="Add Thesis" name = "apply">
     </form>
   </body>
 </html>

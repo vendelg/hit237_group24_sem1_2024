@@ -40,4 +40,6 @@ admin.site.register(ThesisApplication)
 
 admin.site.register(Student)
 
+
+
 admin.site.register(Project) # Step 1

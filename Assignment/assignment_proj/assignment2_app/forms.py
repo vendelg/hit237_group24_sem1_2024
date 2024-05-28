@@ -10,24 +10,25 @@ from django.contrib.auth import authenticate
 
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
-from .models import notification
+
 
 
 class ThesisForm(forms.ModelForm):
   class Meta:
     model = Project
-    
-    exclude = []
+
+ 
+
+    exclude = ['is_approved', 'is_request',]
     
     labels = {
       'tid': 'Thesis ID',
       'desc': 'Description',
-      'sup_name': 'Supervisor'
+      'sup_name': 'Supervisor',
     }
 
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget = TextInput())
-    password = forms.CharField(widget = PasswordInput())
+
+      
 
 class AccAuthForm(forms.ModelForm):
 
@@ -57,9 +58,9 @@ class ApplicationForm(forms.ModelForm):
         
     model = ThesisApplication
 
-    fields = ['GroupNumber', 'StudentID']
+    fields = ['StudentID']
 
-    labels = {'ThesisID' : 'Thesis ID', 'GroupNumber' : 'Group Number', 'StudentID' : 'Student ID'}
+    labels = {'StudentID' : 'Student ID'}
 
 #Allows Students to register
 
@@ -73,7 +74,4 @@ class StudentForm(forms.ModelForm):
 
 
 
-class notificationForm(forms.ModelForm):
-    class Meta:
-        model = notification
-        fields = ['content']
+
