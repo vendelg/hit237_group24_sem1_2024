@@ -38,17 +38,9 @@ urlpatterns = [
     path('register/student/', views.student_registration, name='registerform'),
     path('register/student/done/', views.registration_submit, name='registrationdone'),
     path('dashboard/<user_id>/', views.dashboard, name='dashboard'),
-<<<<<<< Updated upstream
-    path('change_password/<int:user_id>/', views.change_password, name='change_password'),
-    path('notification/<int:user_id>/', views.notification, name = 'notification'),
-    path('Request/<tid>', views.Requests, name = "Requests"),
-
-
-    
-=======
-    path('notification/<int:user_id>/', views.notification, name='notification'),
     path('change-password/', ChangePasswordView.as_view(), name='change_password'), 
->>>>>>> Stashed changes
+    path('notification/<int:user_id>/', views.notification, name='notification'),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()
