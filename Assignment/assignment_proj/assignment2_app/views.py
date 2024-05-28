@@ -131,10 +131,6 @@ def add_thesis_submit(request):
    
    return render(request, app_name + 'done.html', page_data)
 
-
-
-
-
 def modify_thesis(request, tid):
    thesis = Project.objects.get(tid=int(tid))
    
