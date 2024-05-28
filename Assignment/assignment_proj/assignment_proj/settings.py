@@ -141,8 +141,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< Updated upstream
-
-=======
 LOGIN_URL = '/login/'
->>>>>>> Stashed changes
