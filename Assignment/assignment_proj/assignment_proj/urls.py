@@ -38,7 +38,7 @@ urlpatterns = [
     path('register/student/done/', views.registration_submit, name='registrationdone'),
     path('dashboard/<user_id>/', views.dashboard, name='dashboard'),
     path('change_password/<int:user_id>/', views.change_password, name='change_password'),
-    path('notification/<user_id>/', views.notification, name = 'notification'),
+    path('notification/<int:user_id>/', views.notification, name = 'notification'),
     path('Request/<tid>', views.Requests, name = "Requests"),
 
 

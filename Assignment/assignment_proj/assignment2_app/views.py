@@ -183,19 +183,21 @@ def view_thesis(request, tid):  # Step 2
    return render(request, 'assignment2_app/view_thesis.html', page_data)
 
 def add_thesis(request):
+   page_data = {'thesisForm': ThesisForm()}
    user= request.user
    is_supervisor = False
    is_coordinator = False
    if user.role == Accounts.Role.Supervisor :
       is_supervisor = True
-
+      page_data['is_supervisor'] = is_supervisor
+      return render(request, app_name + 'add_thesis.html', page_data)
    elif user.role == Accounts.Role.Coordinator:
       is_coordinator = True
+      page_data['is_coordinator'] = is_coordinator
 
-      page_data = {'thesisForm': ThesisForm(), 'is_supervisor' : is_supervisor, 'is_coordinator':is_coordinator }
-
-      return render(request, app_name + 'add_thesis.html', page_data)
+     
    
+      return render(request, app_name + 'add_thesis.html', page_data)
    else: return HttpResponse("You dont have the right permission.")
 
 def add_thesis_request(request):
@@ -207,7 +209,8 @@ def add_thesis_request(request):
       if form.is_valid():
          form.save()
          return HttpResponseRedirect(reverse('homepage'))
-      else: return HttpResponse("Already exist")
+      else:
+         return HttpResponse("Already exist")
 
 
 def modify_thesis(request, tid):
@@ -236,6 +239,7 @@ def modify_thesis(request, tid):
    if user.role == Accounts.Role.Supervisor :
       is_supervisor = True
       page_data['is_supervisor'] = is_supervisor
+      return render(request, app_name + 'edit_thesis.html', page_data)
    elif user.role == Accounts.Role.Coordinator:
       is_coordinator = True
       page_data['is_coordinator'] = is_coordinator
@@ -364,13 +368,7 @@ def thesis_application(request, tid):
       is_supervisor = True
    if user.role == Accounts.Role.Coordinator:
       is_coordinator = True
-      context = { 
-     "application_form" : ApplicationForm(),
-     "thesis" :thesis_selected,
-     "is_student": is_student,
-     "is_supervisor": is_supervisor,
-     "is_coordinator": is_coordinator,
-   }                
+     
 
       if user.role == Accounts.Role.Student :
           is_student = True
@@ -378,8 +376,15 @@ def thesis_application(request, tid):
          is_supervisor = True
       if user.role == Accounts.Role.Coordinator:
          is_coordinator = True
-      else: return HttpResponse("LogIn?")
-      return render(request, 'assignment2_app/apply_thesis.html', context)
+
+   context = { 
+     "application_form" : ApplicationForm(),
+     "thesis" :thesis_selected,
+     "is_student": is_student,
+     "is_supervisor": is_supervisor,
+     "is_coordinator": is_coordinator,
+   }                
+   return render(request, 'assignment2_app/apply_thesis.html', context)
    
 
 
@@ -486,7 +491,6 @@ def notification(request, *args, **kwargs):
       context['username'] = account.username
       context['email'] = account.email
       context['hide_email'] = account.hide_email
-
    
       user = request.user
       if user.is_authenticated and user != account:
@@ -502,6 +506,8 @@ def notification(request, *args, **kwargs):
 
       context ['thesis'] = thesis
       context ['is_coordinator'] = is_coordinator
+
+   return render(request, 'assignment2_app/notification.html', context)
 
 def change_password(request, user_id):  
     if request.method == 'POST':
@@ -523,10 +529,7 @@ def change_password(request, user_id):
 def base(request, *args, **kwargs):
    
    user_id = kwargs.get("user_id") 
-   context = {
-         "uer" : user_id
-      }
-   return render(request, 'assignment2_app/notification.html', context)
+   
 
 def Requests (request, tid):
    
