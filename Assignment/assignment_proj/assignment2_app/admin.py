@@ -7,11 +7,6 @@ from assignment2_app.models import Accounts
 
 
 
-
-
-
-
-
 #CREATING THE ADMIN CLASS
 
 class AccountAdmin(UserAdmin):

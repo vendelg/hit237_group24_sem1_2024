@@ -10,6 +10,12 @@ from django.contrib.auth import authenticate
 
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
+<<<<<<< Updated upstream
+=======
+from .models import notification
+from .models import Accounts
+from django.contrib.auth.forms import PasswordChangeForm
+>>>>>>> Stashed changes
 
 
 
@@ -74,4 +80,16 @@ class StudentForm(forms.ModelForm):
 
 
 
+<<<<<<< Updated upstream
+=======
+class notificationForm(forms.ModelForm):
+    class Meta:
+        model = notification
+        fields = ['content']
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+>>>>>>> Stashed changes
 

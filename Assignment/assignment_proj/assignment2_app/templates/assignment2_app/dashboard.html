@@ -1,44 +1,22 @@
 {% extends "assignment2_app/base.html" %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>Dashboard</title>
-  </head>
-  {% block page_heading %}
-  {% load static %}
-  <link rel = "stylesheet" type = "text/css" href = "{% static 'css/styles.css' %}">
-  <h1 class = "page_headings"><str>Profile</str></h1>
-  {% endblock %}
+</head>
+{% block page_heading %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<h1 class="page_headings"><str>Profile</str></h1>
+{% endblock %}
 {% block main_body %}
- 
-    <div class="container">
-      
-        <nav>
-          <a href= "{% url 'notification' user.id %}" > <button>Notification</button></a>
-        </nav>
-
-        <h2>User Profile</h2>
-        <p>Email: {{ user.email }}</p>
-
-        <h3>Change Password</h3>
-        <form method="post" action="{% url 'change_password' user.id %}">
-          {% csrf_token %}
-          <div>
-            <label for="old_password">Old Password:</label>
-            <input type="password" id="old_password" name="old_password" required>
-          </div>
-          <div>
-            <label for="new_password1">New Password:</label>
-            <input type="password" id="new_password1" name="new_password1" required>
-          </div>
-          <div>
-            <label for="new_password2">Confirm New Password:</label>
-            <input type="password" id="new_password2" name="new_password2" required>
-          </div>
-          <button type="submit">Change Password</button>
-        </form>
-      
-    </div>
-
+<div class="container">
+    <nav>
+        <a href="{% url 'notification' user.id %}"><button>Notification</button></a>
+        <a href="{% url 'change_password' %}"><button>Change Password</button></a> 
+    </nav>
+    <h2>User Profile</h2>
+    <p>Email: {{ user.email }}</p>
+</div>
 {% endblock %}
 </html>
