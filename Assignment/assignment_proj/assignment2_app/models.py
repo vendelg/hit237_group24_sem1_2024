@@ -8,12 +8,12 @@ from datetime import datetime
 class Project(models.Model):
   tid = models.CharField(max_length=3, primary_key=True)
   title = models.CharField(max_length=100)
-  desc = models.CharField(max_length=1500)
+  desc = models.TextField(max_length=1500)
   supName = models.CharField(max_length=30)
   is_approved = models.BooleanField(default=False)
-  is_request = models.BooleanField(default = True)
+  is_request = models.BooleanField(default=True)
+  
   def __str__(self):
-
     return self.tid + " : " + self.title
   
 
