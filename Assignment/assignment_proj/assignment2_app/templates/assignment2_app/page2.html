@@ -11,6 +11,7 @@
 
 {% if is_supervisor or is_coordinator %}
     <a href="add/thesis/"><button>Add Thesis</button></a>
+
 {% endif %}
 
 
@@ -19,18 +20,21 @@
 <h2><a href="{% url 'details' thesis.tid %}">{{ thesis.title }}</a></h2>
 <div class= "supervisor_name"> Supervisor: {{ thesis.supName }} </div>
 <div class= "desc"> {{ thesis.desc }} </div>
+{% endif %}
 {% if is_supervisor or is_coordinator %}
 <a href="modify/thesis/{{ thesis.tid }}"><button>Modify Thesis</button></a>
 {% endif %}
 
+{% if is_supervisor or is_coordinator or is_student %}
 <div>
   <nav>
     <a href="{% url 'application_form' thesis.tid %}"><button>Apply</button></a>
     
   </nav>
 </div>
+
 {%endif %}
 {% endfor %}
-
+<!-- Added code to make "apply" buttons invisible until user logs in - VG -->
  
 {% endblock %} 
